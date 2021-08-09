@@ -1,0 +1,14 @@
+name: UpdateBook
+version: ${project.version}
+main: updatebook.updatebook.UpdateBook
+api-version: '1.15'
+authors: [46kuri_]
+description: LIFE plugin
+
+commands:
+  update:
+    description: パッチノート
+    permission: Update.admin.open
+permissions:
+  Update:
+    default: op
