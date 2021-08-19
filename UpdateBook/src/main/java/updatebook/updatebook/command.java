@@ -21,7 +21,7 @@ public class command implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         if (cmd.getName().equalsIgnoreCase("update")) {
-            if (args.length <= 0) return false;
+            if (args.length <= 0) return true;
             if (args[0].equalsIgnoreCase("reload")) {
                 //OP以外起動しないように設定
                 if (!sender.hasPermission("Update.admin.open")) {
@@ -38,7 +38,7 @@ public class command implements CommandExecutor {
             }
             if (args[0].equalsIgnoreCase("open")) {
                 if (args.length <= 1) {
-                    return false;
+                    return true;
                 }
                 if(args[1].equalsIgnoreCase(args[1])){
                     for(String key : plugin.getConfig().getConfigurationSection("Update").getKeys(false)) {
