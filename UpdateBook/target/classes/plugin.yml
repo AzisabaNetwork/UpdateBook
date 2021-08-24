@@ -1,7 +1,7 @@
 name: UpdateBook
 version: 1.0
 main: updatebook.updatebook.UpdateBook
-api-version: '1.15'
+api-version: 1.15
 authors: [46kuri_]
 description: LIFE plugin
 
@@ -10,5 +10,7 @@ commands:
     description: パッチノート
     permission: Update.admin.open
 permissions:
-  Update:
+  Update.admin.open:
     default: op
+  Update.member.open:
+    default: true
