@@ -21,37 +21,37 @@ public class command implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         if (cmd.getName().equalsIgnoreCase("update")) {
-            if (args.length <= 0) return true;
+            if (args.length <= 0) {
+                return true;
+            }
             if (args[0].equalsIgnoreCase("reload")) {
-                if (sender.hasPermission("Update.admin.open")) {
-                    plugin.reloadConfig();
-                    sender.sendMessage("UpdatePlugin reload complete!");
+                if (sender.hasPermission("Update.permission.admin")) {
                     String WorldOnMessage = plugin.getConfig().getString("Update.WorldOnMessage");
                     if (WorldOnMessage == null) return true;
-                    for (Player player : Bukkit.getOnlinePlayers()) {
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', WorldOnMessage));
-                    }
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', WorldOnMessage));
+                    plugin.reloadConfig();
+                }
+                return true;
+            }
+
+            if (args[0].equalsIgnoreCase("open")) {
+                if (args.length <= 1) {
                     return true;
                 }
-                if (args[0].equalsIgnoreCase("open")) {
-                    if (args.length <= 1) {
-                        return true;
-                    }
-                    if (args[1].equalsIgnoreCase(args[1])) {
-                        for (String key : plugin.getConfig().getConfigurationSection("Update").getKeys(false)) {
-                            ItemStack itemStack = new ItemStack(Material.WRITTEN_BOOK);
-                            BookMeta bookMeta = (BookMeta) itemStack.getItemMeta();
-                            if (bookMeta == null) return true;
-                            List<String> Page = plugin.getConfig().getStringList("Update." + key + ".List");
-                            for (String P : Page) {
-                                bookMeta.addPage(ChatColor.translateAlternateColorCodes('&', P));
-                            }
-                            if (key.equalsIgnoreCase(args[1])) {
-                                bookMeta.setTitle("LIFE");
-                                bookMeta.setAuthor("46kuri_");
-                                itemStack.setItemMeta(bookMeta);
-                                p.openBook(itemStack);
-                            }
+                if (args[1].equalsIgnoreCase(args[1])) {
+                    for (String key : plugin.getConfig().getConfigurationSection("Update").getKeys(false)) {
+                        ItemStack itemStack = new ItemStack(Material.WRITTEN_BOOK);
+                        BookMeta bookMeta = (BookMeta) itemStack.getItemMeta();
+                        if (bookMeta == null) return true;
+                        List<String> Page = plugin.getConfig().getStringList("Update." + key + ".List");
+                        for (String P : Page) {
+                            bookMeta.addPage(ChatColor.translateAlternateColorCodes('&', P));
+                        }
+                        if (key.equalsIgnoreCase(args[1])) {
+                            bookMeta.setTitle("LIFE");
+                            bookMeta.setAuthor("46kuri_");
+                            itemStack.setItemMeta(bookMeta);
+                            p.openBook(itemStack);
                         }
                     }
                     return true;
