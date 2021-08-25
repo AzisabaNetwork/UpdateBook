@@ -8,9 +8,10 @@ description: LIFE plugin
 commands:
   update:
     description: パッチノート
-    permission: Update.admin.open
+    permission: Update.permission.member
+
 permissions:
-  Update.admin.open:
+  Update.permission.admin:
     default: op
-  Update.member.open:
+  Update.permission.member:
     default: true
