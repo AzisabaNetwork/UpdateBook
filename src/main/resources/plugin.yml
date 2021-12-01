@@ -1,6 +1,6 @@
 name: UpdateBook
 version: ${project.version}
-main: updatebook.updatebook.UpdateBook
+main: com.github.sirokuri_.updatebook.UpdateBook
 api-version: 1.15
 authors: [46kuri_]
 description: LIFE plugin
